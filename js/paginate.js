@@ -1,10 +1,10 @@
 var paginate = {};
 
 	paginate.init = function(){
-		displaySetup();
-		loadButtons();
-		clickEvents();
-		checkPage();
+		displaySetup(); //hides everything except first chapter on page load
+		loadButtons(); //loads the buttons!
+		clickEvents(); 
+		checkPage(); //checks if the current page is the first or last and disables buttons accordingly
 	}	
 		
 	function loadButtons(){
