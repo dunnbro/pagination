@@ -5,7 +5,7 @@ var paginate = {};
 		loadButtons(); //loads the buttons!
 		clickEvents(); 
 		checkPage(); //checks if the current page is the first or last and disables buttons accordingly
-	}	
+	};	
 		
 	function loadButtons(){
 
@@ -68,12 +68,12 @@ var paginate = {};
 	function nextPage (){
 		
 		var currentPage = $(".js-currentchapter");
-		var nextPage = currentPage.next();
+		var followingPage = currentPage.next();
 		
 		currentPage
 			.hide()
 			.removeClass('js-currentchapter');
-		nextPage
+		followingPage
 			.show()
 			.addClass('js-currentchapter');
 			
@@ -85,12 +85,12 @@ var paginate = {};
 	function prevPage(){
 
 		var currentPage = $(".js-currentchapter");
-		var prevPage = currentPage.prev();
+		var previousPage = currentPage.prev();
 		
 		currentPage
 			.hide()
 			.removeClass('js-currentchapter');
-		prevPage
+		previousPage
 			.show()
 			.addClass('js-currentchapter');
 			
