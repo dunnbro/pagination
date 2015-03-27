@@ -1,23 +1,21 @@
 var paginate = {};
 
+var numPages = ($('#story').children().length);
+	
 	paginate.init = function(){
-		displaySetup(); //hides everything except first chapter on page load
-		loadButtons(); //loads the buttons!
+		 
+		loadButtons();
+		displaySetup(); 
+		 
 		clickEvents(); 
-		checkPage(); //checks if the current page is the first or last and disables buttons accordingly
+		checkPage(); 
 	};	
 		
 	function loadButtons(){
-
+		var buttons = '<div id="js-buttons"><input type="button" value="First" id="js-first"><input type="button" value="Prev" id="js-previous"><span id="js-pagecount"></span><input type="button" value="Next" id="js-next"><input type="button" value="Last" id="js-last"></div>';
+		
 		$("#story")
-			.after('<div id="js-buttons">');
-		$('#js-buttons')
-			.append('<input type="button" value="First" id="js-first">')
-			.append('<input type="button" value="Prev" id="js-previous">')
-			.append('<span id="js-pagecount"></span>')
-			.append('<input type="button" value="Next" id="js-next">')
-			.append('<input type="button" value="Last" id="js-last">');
-				
+			.after(buttons);
 		updatePageNumber();
 	}
 
@@ -30,8 +28,8 @@ var paginate = {};
 
 	function checkPage(){
 
-		var finalPage = (parseInt($('.js-currentchapter').index())+1);
-		var numPages = parseInt($('#story').children().size());
+		var finalPage = ($('.js-currentchapter').index()+1);
+		var numPages = ($('#story').children().length);
 		
 		if($('.js-currentchapter').index()=== 0){
 			$('#js-first').prop('disabled', true);
@@ -58,11 +56,9 @@ var paginate = {};
 	}
 
 	function updatePageNumber(){
-
-		var numPages = parseInt($('#story').children().size());
-		var pageNumber = parseInt($('.js-currentchapter').index()+1);
-		$("#js-pagecount").text("Chapter" + " " + pageNumber + " " + "of" + " " + numPages);
-
+		//updates page number in #js-pagecount span
+		var pageNumber = ($('.js-currentchapter').index()+1);
+		$("#js-pagecount span").text(pageNumber);
 	}
 
 	function nextPage (){
@@ -129,10 +125,13 @@ var paginate = {};
 
 
 	function displaySetup() {
-		$(".js-storySection")
-			.hide();
+	    $(".js-storySection")
+			.css('display', 'none');
 		$(".js-storySection").first().addClass('js-currentchapter');
-		$(".js-currentchapter").show();
+		$(".js-currentchapter")
+			.css('display', 'block');
+		$("#js-pagecount").html('Chapter' +  ' ' + '<span>pageNumber</span>' + ' ' + 'of' + ' ' + numPages);
+		updatePageNumber();
 	}	
 		
 paginate.init();	
