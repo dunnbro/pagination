@@ -14,7 +14,6 @@ var numPages = ($('#story').children().length);
         paginate.sectionTerm = 'Part';
 		paginate.loadButtons();
 		paginate.displaySetup(); 
-		paginate.clickEvents(); 
 		paginate.checkPage();
 		paginate.buttons();
 	};	
@@ -40,42 +39,27 @@ var numPages = ($('#story').children().length);
 			.after(buttons);
 		paginate.updatePageNumber();
 	}
-	
-	
-	paginate.clickEvents = function(){
-		$('#js-next').on('click', paginate.nextPage);
-		$('#js-previous').on('click', paginate.prevPage);
-		$('#js-first').on('click', paginate.firstPage);
-		$('#js-last').on('click', paginate.lastPage);
-	}
 
 	paginate.checkPage = function(){
-
 		var finalPage = ($('.js-currentchapter').index()+1);
-		var numPages = ($('#story').children().length);
 		
-		if($('.js-currentchapter').index()=== 0){
+		if($('.js-currentchapter').index()=== 0) {
 			$('#js-first').prop('disabled', true);
 			$('#js-previous').prop('disabled', true);
 			$('#js-last').prop('disabled', false);
 			$('#js-next').prop('disabled', false);
 			
-		}
-		
-		else if(finalPage === numPages){
+		} else if (finalPage === numPages) {
 			$('#js-last').prop('disabled', true);
 			$('#js-next').prop('disabled', true);
 			$('#js-first').prop('disabled', false);
 			$('#js-previous').prop('disabled', false);
-		}
-		
-		else {
+		} else {
 			$('#js-first').prop('disabled', false);
 			$('#js-last').prop('disabled', false);
 			$('#js-previous').prop('disabled', false);
 			$('#js-next').prop('disabled', false);
 		}
-		
 	}
 
 	paginate.updatePageNumber = function(){
@@ -116,6 +100,7 @@ var numPages = ($('#story').children().length);
 				
 				paginate.updatePageNumber();
 				paginate.checkPage();
+				window.scrollTo(0,0);
 			}
 		});
 	}
