@@ -1,3 +1,12 @@
+(function(factory) {
+    if (typeof module === 'object' && typeof module.exports === 'object') {
+        module.exports = factory(require('jquery'), window, document);
+    } else {
+        factory(jQuery, window, document);
+    }
+})(function($, window, document, undefined) {
+    'use strict';
+
 var paginate = {};
 
 var numPages = ($('#story').children().length);
@@ -145,6 +154,4 @@ var numPages = ($('#story').children().length);
 	}	
 		
 paginate.init();	
-	
-
-
+});
