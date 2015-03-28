@@ -8,19 +8,16 @@
     'use strict';
 
 var paginate = {};
-
 var numPages = ($('#story').children().length);
 	
 	paginate.init = function(){
-		 
-		loadButtons();
-		displaySetup(); 
-		 
-		clickEvents(); 
-		checkPage(); 
+		paginate.loadButtons();
+		paginate.displaySetup(); 
+		paginate.clickEvents(); 
+		paginate.checkPage(); 
 	};	
 		
-	function loadButtons(){
+	paginate.loadButtons = function(){
 		var buttons = 
             '<div id="js-buttons" class="pag-nav">' +
                 '<span class="pag-btnGroup--1">' +
@@ -36,17 +33,17 @@ var numPages = ($('#story').children().length);
 
 		$("#story")
 			.after(buttons);
-		updatePageNumber();
+		paginate.updatePageNumber();
 	}
 
-	function clickEvents(){
-		$('#js-next').on('click', nextPage);
-		$('#js-previous').on('click', prevPage);
-		$('#js-first').on('click', firstPage);
-		$('#js-last').on('click', lastPage);
+	paginate.clickEvents = function(){
+		$('#js-next').on('click', paginate.nextPage);
+		$('#js-previous').on('click', paginate.prevPage);
+		$('#js-first').on('click', paginate.firstPage);
+		$('#js-last').on('click', paginate.lastPage);
 	}
 
-	function checkPage(){
+	paginate.checkPage = function(){
 
 		var finalPage = ($('.js-currentchapter').index()+1);
 		var numPages = ($('#story').children().length);
@@ -75,13 +72,13 @@ var numPages = ($('#story').children().length);
 		
 	}
 
-	function updatePageNumber(){
+	paginate.updatePageNumber = function(){
 		//updates page number in #js-pagecount span
 		var pageNumber = ($('.js-currentchapter').index()+1);
 		$("#js-pagecount span").text(pageNumber);
 	}
 
-	function nextPage (){
+	paginate.nextPage = function(){
 		
 		var currentPage = $(".js-currentchapter");
 		var followingPage = currentPage.next();
@@ -93,12 +90,12 @@ var numPages = ($('#story').children().length);
 			.show()
 			.addClass('js-currentchapter');
 			
-		updatePageNumber();
-		checkPage();
+		paginate.updatePageNumber();
+		paginate.checkPage();
 		
 	}
 
-	function prevPage(){
+	paginate.prevPage = function(){
 
 		var currentPage = $(".js-currentchapter");
 		var previousPage = currentPage.prev();
@@ -110,12 +107,12 @@ var numPages = ($('#story').children().length);
 			.show()
 			.addClass('js-currentchapter');
 			
-		updatePageNumber();
-		checkPage();
+		paginate.updatePageNumber();
+		paginate.checkPage();
 		
 	}
 
-	function firstPage(){
+	paginate.firstPage = function(){
 		var currentPage = $(".js-currentchapter");
 		currentPage
 			.hide()
@@ -124,12 +121,12 @@ var numPages = ($('#story').children().length);
 			.show()
 			.addClass('js-currentchapter');
 			
-		updatePageNumber();
-		checkPage();
+		paginate.updatePageNumber();
+		paginate.checkPage();
 		
 	}
 
-	function lastPage(){
+	paginate.lastPage = function(){
 		var currentPage = $(".js-currentchapter");
 		currentPage
 			.hide()
@@ -139,18 +136,14 @@ var numPages = ($('#story').children().length);
 			.show()
 			.addClass('js-currentchapter');
 			
-		updatePageNumber();
-		checkPage();
+		paginate.updatePageNumber();
+		paginate.checkPage();
 	}
 
 
-	function displaySetup() {
-	    $(".js-storySection")
-			.css('display', 'none');
+	paginate.displaySetup = function() {
 		$(".js-storySection").first().addClass('js-currentchapter');
-		$(".js-currentchapter")
-			.css('display', 'block');
-		updatePageNumber();
+		paginate.updatePageNumber();
 	}	
 		
 paginate.init();	
