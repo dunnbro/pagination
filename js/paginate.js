@@ -12,8 +12,19 @@ var numPages = ($('#story').children().length);
 	};	
 		
 	function loadButtons(){
-		var buttons = '<div id="js-buttons"><input type="button" value="First" id="js-first"><input type="button" value="Prev" id="js-previous"><span id="js-pagecount"></span><input type="button" value="Next" id="js-next"><input type="button" value="Last" id="js-last"></div>';
-		
+		var buttons = 
+            '<div id="js-buttons" class="pag-nav">' +
+                '<span class="pag-btnGroup--1">' +
+                    '<input type="button" value="First" id="js-first" class="pag-first">' +
+                    '<input type="button" value="Prev" id="js-previous" class="pag-prev">' +
+                '</span>' +
+                '<span id="js-pagecount" class="pag-text">section <span>1</span> of ' + numPages + '</span>' +
+                '<span class="pag-btnGroup--2">' +
+                    '<input type="button" value="Next" id="js-next" class="pag-next">' +
+                    '<input type="button" value="Last" id="js-last" class="pag-last">' +
+                '</span>' +
+            '</div>';
+
 		$("#story")
 			.after(buttons);
 		updatePageNumber();
@@ -130,7 +141,6 @@ var numPages = ($('#story').children().length);
 		$(".js-storySection").first().addClass('js-currentchapter');
 		$(".js-currentchapter")
 			.css('display', 'block');
-		$("#js-pagecount").html('Chapter' +  ' ' + '<span>pageNumber</span>' + ' ' + 'of' + ' ' + numPages);
 		updatePageNumber();
 	}	
 		
