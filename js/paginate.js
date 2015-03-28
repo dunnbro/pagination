@@ -14,7 +14,8 @@ var numPages = ($('#story').children().length);
 		paginate.loadButtons();
 		paginate.displaySetup(); 
 		paginate.clickEvents(); 
-		paginate.checkPage(); 
+		paginate.checkPage();
+		paginate.buttons();
 	};	
 		
 	paginate.loadButtons = function(){
@@ -35,7 +36,8 @@ var numPages = ($('#story').children().length);
 			.after(buttons);
 		paginate.updatePageNumber();
 	}
-
+	
+	
 	paginate.clickEvents = function(){
 		$('#js-next').on('click', paginate.nextPage);
 		$('#js-previous').on('click', paginate.prevPage);
@@ -77,69 +79,43 @@ var numPages = ($('#story').children().length);
 		var pageNumber = ($('.js-currentchapter').index()+1);
 		$("#js-pagecount span").text(pageNumber);
 	}
-
-	paginate.nextPage = function(){
-		
-		var currentPage = $(".js-currentchapter");
-		var followingPage = currentPage.next();
-		
-		currentPage
-			.hide()
-			.removeClass('js-currentchapter');
-		followingPage
-			.show()
-			.addClass('js-currentchapter');
+	
+	paginate.buttons = function(){
+		$('#js-buttons').on('click', function(event) {
+			var target = ($(event.target));
+			var currentPage = $(".js-currentchapter");
+			var followingPage = currentPage.next();
+			var previousPage = currentPage.prev();
+			var firstPage = $(".js-storySection").first();
+			var lastPage = $(".js-storySection").last();
 			
-		paginate.updatePageNumber();
-		paginate.checkPage();
-		
+			if (target.is('input')){
+				currentPage.removeClass('js-currentchapter');
+				
+				switch(event.target.id) {
+					case 'js-first':
+					firstPage.addClass('js-currentchapter');
+					break;
+					
+					case 'js-previous':
+					previousPage.addClass('js-currentchapter');
+					break;
+					
+					case 'js-next':
+					followingPage.addClass('js-currentchapter');
+					break;
+					
+					case 'js-last':
+					lastPage.addClass('js-currentchapter');
+					break;
+				}
+				
+				paginate.updatePageNumber();
+				paginate.checkPage();
+			}
+		});
 	}
-
-	paginate.prevPage = function(){
-
-		var currentPage = $(".js-currentchapter");
-		var previousPage = currentPage.prev();
-		
-		currentPage
-			.hide()
-			.removeClass('js-currentchapter');
-		previousPage
-			.show()
-			.addClass('js-currentchapter');
-			
-		paginate.updatePageNumber();
-		paginate.checkPage();
-		
-	}
-
-	paginate.firstPage = function(){
-		var currentPage = $(".js-currentchapter");
-		currentPage
-			.hide()
-			.removeClass('js-currentchapter');
-		$(".js-storySection").first()
-			.show()
-			.addClass('js-currentchapter');
-			
-		paginate.updatePageNumber();
-		paginate.checkPage();
-		
-	}
-
-	paginate.lastPage = function(){
-		var currentPage = $(".js-currentchapter");
-		currentPage
-			.hide()
-			.removeClass('js-currentchapter');
-		
-		$(".js-storySection").last()
-			.show()
-			.addClass('js-currentchapter');
-			
-		paginate.updatePageNumber();
-		paginate.checkPage();
-	}
-
+	
 
 	paginate.displaySetup = function() {
 		$(".js-storySection").first().addClass('js-currentchapter');
