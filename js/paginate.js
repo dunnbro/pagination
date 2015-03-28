@@ -11,6 +11,7 @@ var paginate = {};
 var numPages = ($('#story').children().length);
 	
 	paginate.init = function(){
+        paginate.sectionTerm = 'Part';
 		paginate.loadButtons();
 		paginate.displaySetup(); 
 		paginate.clickEvents(); 
@@ -21,12 +22,15 @@ var numPages = ($('#story').children().length);
 	paginate.loadButtons = function(){
 		var buttons = 
             '<div id="js-buttons" class="pag-nav">' +
-                '<span class="pag-btnGroup--1">' +
+                '<span class="pag-btnGroup pag-btnGroup--1">' +
                     '<input type="button" value="First" id="js-first" class="pag-first">' +
                     '<input type="button" value="Prev" id="js-previous" class="pag-prev">' +
                 '</span>' +
-                '<span id="js-pagecount" class="pag-text">section <span>1</span> of ' + numPages + '</span>' +
-                '<span class="pag-btnGroup--2">' +
+                '<span class="pag-text">' +
+                    '<span class="u-block">' + this.sectionTerm + '</span> ' +
+                    '<span class="u-block"><span id="js-pagecount">1</span> of ' + numPages + '</span>'+
+                '</span>' +
+                '<span class="pag-btnGroup pag-btnGroup--2">' +
                     '<input type="button" value="Next" id="js-next" class="pag-next">' +
                     '<input type="button" value="Last" id="js-last" class="pag-last">' +
                 '</span>' +
@@ -75,9 +79,9 @@ var numPages = ($('#story').children().length);
 	}
 
 	paginate.updatePageNumber = function(){
-		//updates page number in #js-pagecount span
+		//updates page number in #js-pagecount
 		var pageNumber = ($('.js-currentchapter').index()+1);
-		$("#js-pagecount span").text(pageNumber);
+		$("#js-pagecount").text(pageNumber);
 	}
 	
 	paginate.buttons = function(){
