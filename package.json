@@ -1,0 +1,21 @@
+{
+    "name": "jquery-pagination",
+    "version": "1.0.0",
+    "description": "splits a long piece of writing into chapters and adds chapter navigation",
+    "main": "js/paginate.js",
+    "scripts": {
+       "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dunnbro/pagination.git"
+    },
+    "author": {
+        "name": "dunnbro"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dunnbro/pagination/issues"
+    },
+    "homepage": "https://github.com/dunnbro/pagination"
+}
