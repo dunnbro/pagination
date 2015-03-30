@@ -76,6 +76,7 @@ var numPages = ($('#story').children().length);
 			var previousPage = currentPage.prev();
 			var firstPage = $(".js-storySection").first();
 			var lastPage = $(".js-storySection").last();
+			var storyTop = $('#story').offset();
 			
 			if (target.is('input')){
 				currentPage.removeClass('js-currentchapter');
@@ -100,7 +101,8 @@ var numPages = ($('#story').children().length);
 				
 				paginate.updatePageNumber();
 				paginate.checkPage();
-				window.scrollTo(0,0);
+				window.scrollTo(storyTop.left, storyTop.top);
+				
 			}
 		});
 	}
@@ -109,6 +111,7 @@ var numPages = ($('#story').children().length);
 	paginate.displaySetup = function() {
 		$(".js-storySection").first().addClass('js-currentchapter');
 		paginate.updatePageNumber();
+		
 	}	
 		
 paginate.init();	
