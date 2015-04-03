@@ -8,10 +8,10 @@
     'use strict';
 
     var paginate = {};
-    var numPages = ($('#story').children().length);
 
     paginate.init = function() {
-        paginate.sectionTerm = 'Part';
+        paginate.numPages = ($('#story').children().length);
+		paginate.sectionTerm = 'Part';
         paginate.loadButtons();
         paginate.displaySetup();
         paginate.checkPage();
@@ -19,8 +19,7 @@
         paginate.addLocationHash();
         paginate.eventListener();
         window.location.hash = '';
-    };
-
+	};
 
     paginate.loadButtons = function() {
       var buttons =
@@ -31,7 +30,7 @@
             '</span>' +
             '<span class="pag-text">' +
             '<span class="u-block">' + this.sectionTerm + '</span> ' +
-            '<span class="u-block"><span id="js-pagecount">1</span> of ' + numPages + '</span>' +
+            '<span class="u-block"><span id="js-pagecount">1</span> of ' + paginate.numPages + '</span>' +
             '</span>' +
             '<span class="pag-btnGroup pag-btnGroup--2">' +
             '<input type="button" value="Next" id="js-next" class="pag-next">' +
@@ -53,7 +52,7 @@
             $('#js-last').prop('disabled', false);
             $('#js-next').prop('disabled', false);
 
-        } else if ($finalPage === numPages) {
+        } else if ($finalPage === paginate.numPages) {
             $('#js-last').prop('disabled', true);
             $('#js-next').prop('disabled', true);
             $('#js-first').prop('disabled', false);
@@ -78,7 +77,7 @@
     }
 
     paginate.buttons = function() {
-        $('#js-buttons').on('click', function(event) {
+        $('#js-buttons').on('click', 'input', function(event) {
             var $target = ($(event.target));
             var $currentPage = $('.js-currentchapter');
             var $firstPage = $('.js-storySection').first();
@@ -86,32 +85,28 @@
             var $followingPage = $currentPage.next();
             var $lastPage = $('.js-storySection').last();
 
-            if ($target.is('input')) {
-                $currentPage.removeClass('js-currentchapter');
+            $currentPage.removeClass('js-currentchapter');
+			switch (event.target.id) {
+				case 'js-first':
+					$firstPage.addClass('js-currentchapter');
+					break;
 
-                switch (event.target.id) {
-                    case 'js-first':
-                        $firstPage.addClass('js-currentchapter');
-                        break;
+				case 'js-previous':
+					$previousPage.addClass('js-currentchapter');
+					break;
 
-                    case 'js-previous':
-                        $previousPage.addClass('js-currentchapter');
-                        break;
+				case 'js-next':
+					$followingPage.addClass('js-currentchapter');
+					break;
 
-                    case 'js-next':
-                        $followingPage.addClass('js-currentchapter');
-                        break;
+				case 'js-last':
+					$lastPage.addClass('js-currentchapter');
+					break;
+			}
 
-                    case 'js-last':
-                        $lastPage.addClass('js-currentchapter');
-                        break;
-                }
-
-                paginate.updatePageNumber();
-                paginate.updateHash();
-                paginate.checkPage();
-                //window.scrollTo(storyTop.left, storyTop.top);
-            }
+			paginate.updatePageNumber();
+			paginate.updateHash();
+			paginate.checkPage();
         });
     }
 
@@ -133,7 +128,7 @@
 		//on window.location.hash value change, checks that any typed hash value is valid, then displays the appropriate section
         $(window).on('hashchange', function(e) {
             var validHash = window.location.hash.replace('#section', '');
-            if (validHash >= 1 && validHash <= numPages) {
+            if (validHash >= 1 && validHash <= paginate.numPages) {
                 var $currentPage = $('.js-currentchapter');
                 $currentPage.removeClass('js-currentchapter');
                 $('#section' + validHash).addClass('js-currentchapter');
