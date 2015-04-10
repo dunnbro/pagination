@@ -1,6 +1,6 @@
 {
     "name": "jquery-pagination",
-    "version": "1.0.0",
+    "version": "1.4.5",
     "description": "splits a long piece of writing into chapters and adds chapter navigation",
     "main": "js/paginate.js",
     "scripts": {
