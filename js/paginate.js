@@ -43,18 +43,15 @@
     };
 
     paginate.checkPage = function() {
-        var $finalPage = ($('.js-currentchapter').index() + 1);
-
-        if ($('.js-currentchapter').index() === 0) {
-            $('#js-first, #js-previous').prop('disabled', true);
-            $('#js-last, #js-next').prop('disabled', false);
-        } else if ($finalPage === paginate.numPages) {
-            $('#js-last, #js-next').prop('disabled', true);
-            $('#js-first, #js-previous').prop('disabled', false);
-        } else {
-            $('#js-first, #js-last, #js-previous, #js-next').prop('disabled', false);
-        }
-    };
+		//all buttons enabled unless it's the first or last page 
+		$('#js-buttons input').prop('disabled', false);
+		if ($('.js-currentchapter').index() === 0) {
+			$('#js-first, #js-previous').prop('disabled', true);
+		}
+		if ($('.js-currentchapter').index() + 1 === paginate.numPages) {
+			$('#js-last, #js-next').prop('disabled', true);
+		}
+	};
 
     paginate.updatePageNumber = function() {
         //updates page number in #js-pagecount
