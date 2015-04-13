@@ -16,8 +16,8 @@
         this.loadButtons();
         this.displaySetup();
         this.checkPage();
-        this.buttons();
-        this.eventListener();
+		$('#js-buttons').on('click', 'input', this.buttons);
+		$(window).on('hashchange', this.hashListener);
     };
 
     paginate.loadButtons = function() {
@@ -63,24 +63,21 @@
     };
 
     paginate.buttons = function() {
-        $('#js-buttons').on('click', 'input', function(event) {
-            var $currentPage = $('.js-currentchapter');
-			var $section = $('.js-storySection');
-			var buttonType = {
-				'js-first': $section.first(),
-				'js-previous': $currentPage.prev(),
-				'js-next': $currentPage.next(),
-				'js-last': $section.last()
-			};
+        var $currentPage = $('.js-currentchapter');
+		var $section = $('.js-storySection');
+		var buttonType = {
+			'js-first': $section.first(),
+			'js-previous': $currentPage.prev(),
+			'js-next': $currentPage.next(),
+			'js-last': $section.last()
+		};
 
-            $currentPage.removeClass('js-currentchapter');
-			buttonType[event.target.id].addClass('js-currentchapter');
-            paginate.updatePageNumber();
-            paginate.updateHash();
-            paginate.checkPage();
-        });
+		$currentPage.removeClass('js-currentchapter');
+		buttonType[event.target.id].addClass('js-currentchapter');
+		paginate.updatePageNumber();
+		paginate.updateHash();
+		paginate.checkPage();
     };
-
 
     paginate.displaySetup = function() {
         //on page load, if no location.hash exists, simply show the first story section
@@ -102,18 +99,16 @@
         });
     };
 
-    paginate.eventListener = function() {
+    paginate.hashListener = function() {
         //on window.location.hash value change, checks that any typed hash value is valid, then displays the appropriate section
-        $(window).on('hashchange', function() {
-            var validHash = window.location.hash.replace('#section', '');
-            if (validHash >= 1 && validHash <= paginate.numPages) {
-                $('.js-currentchapter').removeClass('js-currentchapter');
-                $('#section' + validHash).addClass('js-currentchapter');
-                paginate.updatePageNumber();
-                paginate.updateHash();
-                paginate.checkPage();
-            }
-        });
+		var validHash = window.location.hash.replace('#section', '');
+		if (validHash >= 1 && validHash <= paginate.numPages) {
+			$('.js-currentchapter').removeClass('js-currentchapter');
+			$('#section' + validHash).addClass('js-currentchapter');
+			paginate.updatePageNumber();
+			paginate.updateHash();
+			paginate.checkPage();
+		}
     };
 
     paginate.init();
