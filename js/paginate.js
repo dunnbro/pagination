@@ -66,26 +66,15 @@
         $('#js-buttons').on('click', 'input', function(event) {
             var $currentPage = $('.js-currentchapter');
 			var $section = $('.js-storySection');
+			var buttonType = {
+				'js-first': $section.first(),
+				'js-previous': $currentPage.prev(),
+				'js-next': $currentPage.next(),
+				'js-last': $section.last()
+			};
 
             $currentPage.removeClass('js-currentchapter');
-            switch (event.target.id) {
-                case 'js-first':
-                    $section.first().addClass('js-currentchapter');
-                    break;
-
-                case 'js-previous':
-                    $currentPage.prev().addClass('js-currentchapter');
-                    break;
-
-                case 'js-next':
-                    $currentPage.next().addClass('js-currentchapter');
-                    break;
-
-                case 'js-last':
-                    $section.last().addClass('js-currentchapter');
-                    break;
-            }
-
+			buttonType[event.target.id].addClass('js-currentchapter');
             paginate.updatePageNumber();
             paginate.updateHash();
             paginate.checkPage();
