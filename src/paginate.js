@@ -1,4 +1,10 @@
-;(function ($, window, document, undefined) {
+(function(factory) {
+    if (typeof module === 'object' && typeof module.exports === 'object') {
+        module.exports = factory(require('jquery'), window, document);
+    } else {
+        factory(jQuery, window, document);
+    }
+})(function($, window, document, undefined) {
     // Create the defaults once
     var pluginName = 'paginate';
     var defaults = {
@@ -130,4 +136,4 @@
         });
     };
 
-})(jQuery, window, document);
+});
