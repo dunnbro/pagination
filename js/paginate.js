@@ -16,8 +16,7 @@
         this.loadButtons();
         this.displaySetup();
         this.checkPage();
-		$('#js-buttons').on('click', 'input', this.buttons);
-		$(window).on('hashchange', this.hashListener);
+		
     };
 
     paginate.loadButtons = function() {
