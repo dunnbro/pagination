@@ -1,21 +1,24 @@
 {
-    "name": "jquery-pagination",
-    "version": "1.4.5",
-    "description": "splits a long piece of writing into chapters and adds chapter navigation",
-    "main": "src/paginate.js",
-    "scripts": {
-       "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dunnbro/pagination.git"
-    },
-    "author": {
-        "name": "dunnbro"
-    },
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/dunnbro/pagination/issues"
-    },
-    "homepage": "https://github.com/dunnbro/pagination"
+  "name": "jquery-pagination",
+  "version": "1.4.5",
+  "description": "splits a long piece of writing into chapters and adds chapter navigation",
+  "main": "src/paginate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dunnbro/pagination.git"
+  },
+  "author": {
+    "name": "dunnbro"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dunnbro/pagination/issues"
+  },
+  "homepage": "https://github.com/dunnbro/pagination",
+  "dependencies": {
+    "jquery": "^2.1.3"
+  }
 }
