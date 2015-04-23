@@ -61,16 +61,19 @@
 		},
 
 		displaySetup: function() {
+			var validHash = window.location.hash.replace('#section', '');
 			//on page load, if no location.hash exists, simply show the first story section
-			if (!window.location.hash) {
+			if (!'#section' + validHash) {
 				$('.js-storySection').first().addClass('js-currentchapter');
-				this.updatePageNumber();
+				
 			} else {
 				//if location hash is already present on page load, show the appropriate story section
-				var validHash = window.location.hash.replace('#section', '');
+				//var validHash = window.location.hash.replace('#section', '');
 				$('#section' + validHash).addClass('js-currentchapter');
-				this.updatePageNumber();
 			}
+			
+			this.updatePageNumber();
+			this.updateHash();
 		},
 
 		checkPage: function() {
