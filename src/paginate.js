@@ -23,7 +23,7 @@
 
     Plugin.prototype = {
         init: function() {
-			this.numPages = $('#story').children().length;
+			this.numPages = $(this.element).children().length;
 			this.addLocationHash();
 			this.loadButtons();
 			this.displaySetup();
@@ -56,24 +56,24 @@
 			'</span>' +
 			'</div>';
 
-			$('#story').after(buttons);
+			$(this.element).after(buttons);
 			this.updatePageNumber();
 		},
 
 		displaySetup: function() {
 			var validHash = window.location.hash.replace('#section', '');
 			//on page load, if no location.hash exists, simply show the first story section
-			if (!'#section' + validHash) {
+			if (!window.location.hash) {
 				$('.js-storySection').first().addClass('js-currentchapter');
-				
-			} else {
-				//if location hash is already present on page load, show the appropriate story section
-				//var validHash = window.location.hash.replace('#section', '');
-				$('#section' + validHash).addClass('js-currentchapter');
+				this.updatePageNumber();
+			} 
+			//if hash exists, ensure that it begins with '#section' -- 
+			//hash.Listener then checks that the section number is valid
+			if (window.location.hash) {
+				if (window.location.hash.indexOf('#section') === 0) {
+					this.hashListener();
+				} 
 			}
-			
-			this.updatePageNumber();
-			this.updateHash();
 		},
 
 		checkPage: function() {
@@ -115,6 +115,8 @@
 				self.updatePageNumber();
 				self.updateHash();
 				self.checkPage();
+			} else {
+				window.location = window.location.href.replace( /#.*/, "");
 			}
 		},
 
