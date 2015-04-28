@@ -29,10 +29,10 @@
             this.displaySetup();
             this.checkPage();
             $('#js-buttons').on('click', 'input', function(event) {
-                self.buttons(event, self);
+                self.buttons(event);
             });
             $(window).on('hashchange', function(event) {
-                self.hashListener(event, self);
+                self.hashListener(event);
             });
         },
 
@@ -93,7 +93,7 @@
             $('.js-currentchapter').css('display', 'block');
         },
 
-        buttons: function() {
+        buttons: function(event) {
             var $currentPage = $('.js-currentchapter');
             var $section = $('.js-storySection');
             var buttonType = {
