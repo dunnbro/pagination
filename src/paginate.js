@@ -64,20 +64,37 @@
             this.updatePageNumber();
         },
 
+		/*
         displaySetup: function() {
-            //on page load, if no location.hash exists, simply show the first story section
-            if (!window.location.hash) {
-                $('.js-storySection').first().addClass('js-currentchapter');
-                this.updatePageNumber();
-            }
-            //if hash exists, ensure that it begins with '#section' -- 
-            //hash.Listener then checks that the section number is valid
-            if (window.location.hash) {
-                if (window.location.hash.indexOf('#section') === 0) {
-                    this.hashListener();
-                }
-            }
-        },
+			var validHash = window.location.hash.replace('#section', '');
+			if (window.location.hash.indexOf('#section') === 0) {
+				if (validHash >= 1 && validHash <= this.numPages) {
+					$('#section' + validHash).addClass('js-currentchapter');
+					
+				} else {
+					$('.js-storySection').first().addClass('js-currentchapter');
+				}
+			} else {
+				$('.js-storySection').first().addClass('js-currentchapter');
+			}
+			
+			this.updatePageNumber();
+		},
+		*/
+		
+		displaySetup: function() {
+			var hashValue = window.location.hash.replace('#section', '');
+
+			if (hashValue >= 1 && hashValue <= this.numPages) {
+				if (window.location.hash.indexOf('#section') === 0) {
+					$('#section' + hashValue).addClass('js-currentchapter');
+				}
+			} else {
+				$('.js-storySection').first().addClass('js-currentchapter');
+			}
+
+			this.updatePageNumber();
+		},
 
         checkPage: function() {
             //all buttons enabled unless it's the first or last page
@@ -114,15 +131,15 @@
             //on window.location.hash value change,
             //checks that any typed hash value is valid, then displays the appropriate section
             var validHash = window.location.hash.replace('#section', '');
-            if (validHash >= 1 && validHash <= this.numPages) {
-                $('.js-currentchapter').removeClass('js-currentchapter');
-                $('#section' + validHash).addClass('js-currentchapter');
-                this.updatePageNumber();
-                this.updateHash();
-                this.checkPage();
-            } else {
-                window.location = window.location.href.replace(/#.*/, "");
-            }
+			if (window.location.hash.indexOf('#section') === 0) {
+				if (validHash >= 1 && validHash <= this.numPages) {
+					$('.js-currentchapter').removeClass('js-currentchapter');
+					$('#section' + validHash).addClass('js-currentchapter');
+					this.updatePageNumber();
+					this.updateHash();
+					this.checkPage();
+				} 
+			}
         },
 
         updatePageNumber: function() {
