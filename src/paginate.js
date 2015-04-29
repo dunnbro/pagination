@@ -63,24 +63,6 @@
             $(this.element).after(buttons);
             this.updatePageNumber();
         },
-
-		/*
-        displaySetup: function() {
-			var validHash = window.location.hash.replace('#section', '');
-			if (window.location.hash.indexOf('#section') === 0) {
-				if (validHash >= 1 && validHash <= this.numPages) {
-					$('#section' + validHash).addClass('js-currentchapter');
-					
-				} else {
-					$('.js-storySection').first().addClass('js-currentchapter');
-				}
-			} else {
-				$('.js-storySection').first().addClass('js-currentchapter');
-			}
-			
-			this.updatePageNumber();
-		},
-		*/
 		
 		displaySetup: function() {
 			var hashValue = window.location.hash.replace('#section', '');
