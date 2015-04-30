@@ -8,7 +8,10 @@
     // Create the defaults once
     var pluginName = 'paginate';
     var defaults = {
-        sectionTerm: 'Page'
+        sectionTerm: 'Page',
+		storySection: 'js-storySection',
+		hashTerm: 'section',
+		currentSection: 'js-currentChapter'
     };
 
     // The actual plugin constructor
@@ -23,8 +26,9 @@
     Plugin.prototype = {
         init: function() {
             var self = this;
+			this.sectionName = '.' + this.options.storySection;
             this.numPages = $(this.element).children().length;
-            this.addLocationHash();
+            this.addLocationHash(self);
             this.loadButtons();
             this.displaySetup();
             this.checkPage();
@@ -36,10 +40,11 @@
             });
         },
 
-        addLocationHash: function() {
+		
+        addLocationHash: function(self) {
             //adds numbered section id to each storySection
-            $('.js-storySection').each(function(i) {
-                $(this).prop('id', 'section' + (i + 1));
+            $(this.sectionName).each(function(i) {
+                $(this).prop('id', self.options.hashTerm + (i + 1));
             });
         },
 
@@ -65,14 +70,14 @@
         },
 		
 		displaySetup: function() {
-			var hashValue = window.location.hash.replace('#section', '');
+			var hashValue = window.location.hash.replace('#' + this.options.hashTerm, '');
 
 			if (hashValue >= 1 && hashValue <= this.numPages) {
-				if (window.location.hash.indexOf('#section') === 0) {
-					$('#section' + hashValue).addClass('js-currentchapter');
+				if (window.location.hash.indexOf('#' + this.options.hashTerm) === 0) {
+					$('#' + this.options.hashTerm + hashValue).addClass(this.options.currentSection);
 				}
 			} else {
-				$('.js-storySection').first().addClass('js-currentchapter');
+				$(this.sectionName).first().addClass(this.options.currentSection);
 			}
 
 			this.updatePageNumber();
@@ -81,20 +86,20 @@
         checkPage: function() {
             //all buttons enabled unless it's the first or last page
             $('#js-buttons input').prop('disabled', false);
-            if ($('.js-currentchapter').index() === 0) {
+            if ($('.' + this.options.currentSection).index() === 0) {
                 $('#js-first, #js-previous').prop('disabled', true);
             }
-            if ($('.js-currentchapter').index() + 1 === this.numPages) {
+            if ($('.' + this.options.currentSection).index() + 1 === this.numPages) {
                 $('#js-last, #js-next').prop('disabled', true);
             }
             //hide all sections except for the current chapter
-            $('.js-storySection').css('display', 'none');
-            $('.js-currentchapter').css('display', 'block');
+            $(this.sectionName).css('display', 'none');
+            $('.' + this.options.currentSection).css('display', 'block');
         },
 
         buttons: function(event) {
-            var $currentPage = $('.js-currentchapter');
-            var $section = $('.js-storySection');
+            var $currentPage = $('.' + this.options.currentSection);
+            var $section = $(this.sectionName);
             var buttonType = {
                 'js-first': $section.first(),
                 'js-previous': $currentPage.prev(),
@@ -102,8 +107,8 @@
                 'js-last': $section.last()
             };
 
-            $currentPage.removeClass('js-currentchapter');
-            buttonType[event.target.id].addClass('js-currentchapter');
+            $currentPage.removeClass(this.options.currentSection);
+            buttonType[event.target.id].addClass(this.options.currentSection);
             this.updatePageNumber();
             this.updateHash();
             this.checkPage();
@@ -112,11 +117,11 @@
         hashListener: function() {
             //on window.location.hash value change,
             //checks that any typed hash value is valid, then displays the appropriate section
-            var validHash = window.location.hash.replace('#section', '');
-			if (window.location.hash.indexOf('#section') === 0) {
+            var validHash = window.location.hash.replace('#' + this.options.hashTerm, '');
+			if (window.location.hash.indexOf('#' + this.options.hashTerm) === 0) {
 				if (validHash >= 1 && validHash <= this.numPages) {
-					$('.js-currentchapter').removeClass('js-currentchapter');
-					$('#section' + validHash).addClass('js-currentchapter');
+					$('.' + this.options.currentSection).removeClass(this.options.currentSection);
+					$('#' + this.options.hashTerm + validHash).addClass(this.options.currentSection);
 					this.updatePageNumber();
 					this.updateHash();
 					this.checkPage();
@@ -126,11 +131,11 @@
 
         updatePageNumber: function() {
             //updates page number in #js-pagecount
-            $('#js-pagecount').text($('.js-currentchapter').index() + 1);
+            $('#js-pagecount').text($('.' + this.options.currentSection).index() + 1);
         },
 
         updateHash: function() {
-            window.location.hash = 'section' + ($('.js-currentchapter').index() + 1);
+            window.location.hash = this.options.hashTerm + ($('.' + this.options.currentSection).index() + 1);
         }
     };
 
