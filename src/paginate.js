@@ -40,7 +40,6 @@
             });
         },
 
-		
         addLocationHash: function(self) {
             //adds numbered section id to each storySection
             $(this.sectionName).each(function(i) {
