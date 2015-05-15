@@ -1,7 +1,11 @@
 {
-  "name": "jquery-pagination",
-  "version": "2.0.1",
+  "name": "jquery-mock-pagination",
+  "version": "2.0.0",
   "description": "splits a long piece of writing into chapters and adds chapter navigation",
+  "keywords": [
+    "jquery-plugin",
+    "pagination"
+  ],
   "main": "src/paginate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,12 +17,15 @@
   "author": {
     "name": "dunnbro"
   },
-  "license": "ISC",
+  "contributors": [
+    {
+      "name": "David Wilhelm",
+      "email": "davwilh@gmail.com"
+    }
+  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dunnbro/pagination/issues"
   },
-  "homepage": "https://github.com/dunnbro/pagination",
-  "dependencies": {
-    "jquery": "^2.1.3"
-  }
+  "homepage": "https://github.com/dunnbro/pagination"
 }
