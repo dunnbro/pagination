@@ -1,6 +1,6 @@
-# Pagination
+# Paginator
 
-v2.0.0
+v2.0.4
 
 Takes a collections of elements and allows them to be viewed one at a time, with sequential navigation for the first, last, next, and previous element.
 
@@ -18,7 +18,7 @@ with script tags:
 as CommonJS module:
 ```
 var $ = require('jquery');
-require('jquery-mock-pagination');
+require('jquery-mock-paginator');
 ```
 
 iii. Select the container element with jquery and call the paginate method, passing any options.

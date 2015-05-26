@@ -1,6 +1,6 @@
 {
   "name": "jquery-mock-paginator",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "Takes a collections of elements and allows them to be viewed one at a time with pagination for the first, last, next, and previous element.",
   "keywords": [
     "jquery-plugin",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dunnbro/pagination.git"
+    "url": "git+https://github.com/dunnbro/pagination.git"
   },
   "author": {
     "name": "dunnbro"

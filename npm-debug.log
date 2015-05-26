@@ -1,0 +1,125 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish',
+1 verbose cli   'jquery-mock-paginator' ]
+2 info using npm@2.9.1
+3 info using node@v0.12.3
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose publish [ 'jquery-mock-paginator' ]
+6 silly cache add args [ 'jquery-mock-paginator', null ]
+7 verbose cache add spec jquery-mock-paginator
+8 silly cache add parsed spec { raw: 'jquery-mock-paginator',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'jquery-mock-paginator',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed jquery-mock-paginator@*
+10 verbose addNamed "*" is a valid semver range for jquery-mock-paginator
+11 silly addNameRange { name: 'jquery-mock-paginator', range: '*', hasData: false }
+12 silly mapToRegistry name jquery-mock-paginator
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/jquery-mock-paginator
+16 verbose addNameRange registry:https://registry.npmjs.org/jquery-mock-paginator not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/jquery-mock-paginator
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 5:01:12 PM
+20 verbose request using bearer token for auth
+21 verbose request id d5826f48b9060ccb
+22 http request GET https://registry.npmjs.org/jquery-mock-paginator
+23 http 200 https://registry.npmjs.org/jquery-mock-paginator
+24 silly get cb [ 200,
+24 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly get     etag: '"7VGZQ52HOE2D6M2O41XCR8PCH"',
+24 silly get     'content-type': 'application/json',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     'content-length': '4994',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Tue, 26 May 2015 21:01:12 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-ord1726-ORD',
+24 silly get     'x-cache': 'MISS',
+24 silly get     'x-cache-hits': '0',
+24 silly get     'x-timer': 'S1432674072.783742,VS0,VE43',
+24 silly get     vary: 'Accept' } ]
+25 verbose get saving jquery-mock-paginator to C:\Users\dunnbri\AppData\Roaming\npm-cache\registry.npmjs.org\jquery-mock-paginator\.cache.json
+26 silly addNameRange number 2 { name: 'jquery-mock-paginator', range: '*', hasData: true }
+27 silly addNameRange versions [ 'jquery-mock-paginator', [ '2.0.0', '2.0.2' ] ]
+28 silly addNamed jquery-mock-paginator@2.0.2
+29 verbose addNamed "2.0.2" is a plain semver version for jquery-mock-paginator
+30 silly cache afterAdd jquery-mock-paginator@2.0.2
+31 verbose afterAdd C:\Users\dunnbri\AppData\Roaming\npm-cache\jquery-mock-paginator\2.0.2\package\package.json not in flight; writing
+32 verbose afterAdd C:\Users\dunnbri\AppData\Roaming\npm-cache\jquery-mock-paginator\2.0.2\package\package.json written
+33 silly publish { name: 'jquery-mock-paginator',
+33 silly publish   version: '2.0.2',
+33 silly publish   description: 'Takes a collections of elements and allows them to be viewed one at a time with pagination for the first, last, next, and previous element.',
+33 silly publish   keywords: [ 'jquery-plugin', 'pagination' ],
+33 silly publish   main: 'src/paginate.js',
+33 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+33 silly publish   repository:
+33 silly publish    { type: 'git',
+33 silly publish      url: 'git+https://github.com/dunnbro/pagination.git' },
+33 silly publish   author: { name: 'dunnbro' },
+33 silly publish   contributors: [ { name: 'David Wilhelm', email: 'davwilh@gmail.com' } ],
+33 silly publish   license: 'MIT',
+33 silly publish   bugs: { url: 'https://github.com/dunnbro/pagination/issues' },
+33 silly publish   homepage: 'https://github.com/dunnbro/pagination',
+33 silly publish   readme: '# Pagination\r\n\r\nv2.0.0\r\n\r\nTakes a collections of elements and allows them to be viewed one at a time, with sequential navigation for the first, last, next, and previous element.\r\n\r\n## Usage\r\ni. Start with a container element with a class or id on it. Each child element of that container element will be used for generating the pagination, and should have a class of `js-storySection`. If you want to use a different class name you can, but need to pass it as an option when you call the `paginate` method. See the [demo](/demo/index.html) for an example of how to set this up.\r\n\r\nii. Include jQuery and paginate.js.\r\n\r\nwith script tags:\r\n```\r\n<script src="/path/to/jquery.js"></script>\r\n<script src="/path/to/paginate.js"></script>\r\n```\r\n\r\nas CommonJS module:\r\n```\r\nvar $ = require(\'jquery\');\r\nrequire(\'jquery-mock-pagination\');\r\n```\r\n\r\niii. Select the container element with jquery and call the paginate method, passing any options.\r\n\r\n```\r\n$(\'#story\').paginate({\r\n\tstorySection: \'sectionClassName\'\r\n});\r\n```\r\n\r\n## Options\r\n+ **sectionTerm** (*default: "Page"*) - The term used to refer to an individual section, this is displayed in the navigation area.\r\n+ **storySection** (*default: "js-storySection"*) - The classname used to distinguish each child element of the container element.\r\n+ **hashTerm** (*default: "section"*) - The location.hash name, displayed in the url so a section can be linked to directly.\r\n+ **currentSection** (*default: "js-currentChapter"*) - The classname used to indicate the element currently visible.\r\n\r\n## Dependencies\r\n+ jQuery\r\n\r\n## Credits\r\n[jQuery Boilerplate](http://jqueryboilerplate.com/)\r\n\r\n## License\r\nThe MIT License (MIT).',
+33 silly publish   readmeFilename: 'README.md',
+33 silly publish   gitHead: '2aefedf58efc0a48128a54d64a4763a2ae30f68d',
+33 silly publish   _id: 'jquery-mock-paginator@2.0.2',
+33 silly publish   _shasum: '368a08e63c0916721e76fc428988a1b775606ca5',
+33 silly publish   _from: 'jquery-mock-paginator@*' }
+34 info prepublish jquery-mock-paginator@2.0.2
+35 verbose getPublishConfig undefined
+36 silly mapToRegistry name jquery-mock-paginator
+37 silly mapToRegistry using default registry
+38 silly mapToRegistry registry https://registry.npmjs.org/
+39 silly mapToRegistry uri https://registry.npmjs.org/jquery-mock-paginator
+40 verbose publish registryBase https://registry.npmjs.org/
+41 silly publish uploading C:\Users\dunnbri\AppData\Roaming\npm-cache\jquery-mock-paginator\2.0.2\package.tgz
+42 verbose request uri https://registry.npmjs.org/jquery-mock-paginator
+43 verbose request sending authorization for write operation
+44 info attempt registry request try #1 at 5:01:12 PM
+45 verbose request using bearer token for auth
+46 http request PUT https://registry.npmjs.org/jquery-mock-paginator
+47 http 403 https://registry.npmjs.org/jquery-mock-paginator
+48 verbose headers { 'content-type': 'application/json',
+48 verbose headers   'cache-control': 'max-age=60',
+48 verbose headers   'content-length': '95',
+48 verbose headers   'accept-ranges': 'bytes',
+48 verbose headers   date: 'Tue, 26 May 2015 21:01:13 GMT',
+48 verbose headers   via: '1.1 varnish',
+48 verbose headers   connection: 'keep-alive',
+48 verbose headers   'x-served-by': 'cache-ord1730-ORD',
+48 verbose headers   'x-cache': 'MISS',
+48 verbose headers   'x-cache-hits': '0',
+48 verbose headers   'x-timer': 'S1432674072.904302,VS0,VE327' }
+49 verbose request invalidating C:\Users\dunnbri\AppData\Roaming\npm-cache\registry.npmjs.org\jquery-mock-paginator on PUT
+50 error publish Failed PUT 403
+51 verbose stack Error: "You cannot publish over the previously published version 2.0.2." : jquery-mock-paginator
+51 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:247:14)
+51 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:170:14)
+51 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:368:22)
+51 verbose stack     at Request.emit (events.js:110:17)
+51 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1219:14)
+51 verbose stack     at Request.emit (events.js:129:20)
+51 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1167:12)
+51 verbose stack     at IncomingMessage.emit (events.js:129:20)
+51 verbose stack     at _stream_readable.js:908:16
+51 verbose stack     at process._tickCallback (node.js:355:11)
+52 verbose statusCode 403
+53 verbose pkgid jquery-mock-paginator
+54 verbose cwd C:\Users\dunnbri\Google Drive\webwork\pagination
+55 error Windows_NT 6.1.7601
+56 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish" "jquery-mock-paginator"
+57 error node v0.12.3
+58 error npm  v2.9.1
+59 error code E403
+60 error "You cannot publish over the previously published version 2.0.2." : jquery-mock-paginator
+61 error If you need help, you may report this error at:
+61 error     <https://github.com/npm/npm/issues>
+62 verbose exit [ 1, true ]
