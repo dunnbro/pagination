@@ -1,6 +1,6 @@
 {
   "name": "jquery-mock-paginator",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Takes a collections of elements and allows them to be viewed one at a time with pagination for the first, last, next, and previous element.",
   "keywords": [
     "jquery-plugin",
@@ -27,5 +27,11 @@
   "bugs": {
     "url": "https://github.com/dunnbro/pagination/issues"
   },
-  "homepage": "https://github.com/dunnbro/pagination"
+  "homepage": "https://github.com/dunnbro/pagination",
+  "readme": "# Pagination\r\n\r\nv2.0.0\r\n\r\nTakes a collections of elements and allows them to be viewed one at a time, with sequential navigation for the first, last, next, and previous element.\r\n\r\n## Usage\r\ni. Start with a container element with a class or id on it. Each child element of that container element will be used for generating the pagination, and should have a class of `js-storySection`. If you want to use a different class name you can, but need to pass it as an option when you call the `paginate` method. See the [demo](/demo/index.html) for an example of how to set this up.\r\n\r\nii. Include jQuery and paginate.js.\r\n\r\nwith script tags:\r\n```\r\n<script src=\"/path/to/jquery.js\"></script>\r\n<script src=\"/path/to/paginate.js\"></script>\r\n```\r\n\r\nas CommonJS module:\r\n```\r\nvar $ = require('jquery');\r\nrequire('jquery-mock-pagination');\r\n```\r\n\r\niii. Select the container element with jquery and call the paginate method, passing any options.\r\n\r\n```\r\n$('#story').paginate({\r\n\tstorySection: 'sectionClassName'\r\n});\r\n```\r\n\r\n## Options\r\n+ **sectionTerm** (*default: \"Page\"*) - The term used to refer to an individual section, this is displayed in the navigation area.\r\n+ **storySection** (*default: \"js-storySection\"*) - The classname used to distinguish each child element of the container element.\r\n+ **hashTerm** (*default: \"section\"*) - The location.hash name, displayed in the url so a section can be linked to directly.\r\n+ **currentSection** (*default: \"js-currentChapter\"*) - The classname used to indicate the element currently visible.\r\n\r\n## Dependencies\r\n+ jQuery\r\n\r\n## Credits\r\n[jQuery Boilerplate](http://jqueryboilerplate.com/)\r\n\r\n## License\r\nThe MIT License (MIT).",
+  "readmeFilename": "README.md",
+  "gitHead": "2aefedf58efc0a48128a54d64a4763a2ae30f68d",
+  "_id": "jquery-mock-paginator@2.0.3",
+  "_shasum": "8878252c17195bcbeb1c9d3e7072718fd38fa1d1",
+  "_from": "jquery-mock-paginator@*"
 }

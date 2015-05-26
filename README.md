@@ -1,6 +1,6 @@
 # Paginator
 
-v2.0.4
+v2.0.5
 
 Takes a collections of elements and allows them to be viewed one at a time, with sequential navigation for the first, last, next, and previous element.
 
